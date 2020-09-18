@@ -1,7 +1,8 @@
-package com.mehmetbalbay.bitcointicker
+package com.mehmetbalbay.bitcointicker.view.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.mehmetbalbay.bitcointicker.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
