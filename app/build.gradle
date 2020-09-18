@@ -1,37 +1,100 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         applicationId "com.mehmetbalbay.bitcointicker"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation Dependencies.junit
+    androidTestImplementation Dependencies.ext_junit
+    androidTestImplementation Dependencies.espresso_core
+
+    implementation Dependencies.kotlin_std_lib
+    implementation Dependencies.core_core_ktx
+
+    implementation Dependencies.app_compat
+    implementation Dependencies.constraint_layout
+    implementation Dependencies.recyclerview
+    implementation Dependencies.card_view
+    implementation Dependencies.android_material
+
+    implementation Dependencies.timber
+
+    implementation Dependencies.mpChart
+
+    implementation Dependencies.mpChart
+
+    implementation Dependencies.dagger
+    kapt Dependencies.dagger_compiler
+
+    implementation Dependencies.dagger_android
+    implementation Dependencies.dagger_android_support
+    kapt Dependencies.dagger_android_compiler
+
+    implementation Dependencies.glide
+    implementation Dependencies.glide_compiler
+
+    implementation Dependencies.retrofit
+    implementation Dependencies.retrofit_gson
+    implementation Dependencies.gson
+    implementation Dependencies.okhttp
+
+    implementation Dependencies.coroutinesAndroid
+    testImplementation Dependencies.coroutineAndroidTest
+    testImplementation Dependencies.coroutinesTest
+
+    implementation Dependencies.arch_lifecycle_livedata_ktx
+    implementation Dependencies.arch_lifecycle_viewmodel_ktx
+
+    implementation Dependencies.room_runtime
+    kapt Dependencies.room_copiler
+
+    implementation Dependencies.rxJava
+    implementation Dependencies.rxAndroid
 
 }
