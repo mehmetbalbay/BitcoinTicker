@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BitcoinTicker</string>
+    <string name="loodos">Loodos</string>
+    <string name="market_fragment">Market</string>
+    <string name="my_coins_fragment">My Coins</string>
+    <string name="settings_fragment">Settings</string>
 </resources>

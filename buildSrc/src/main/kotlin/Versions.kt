@@ -40,6 +40,6 @@ object Versions {
 
     const val mpChart = "3.1.0"
 
-    const val nav_version = "2.3.0-alpha02"
+    const val nav_version = "2.3.0"
 
 }

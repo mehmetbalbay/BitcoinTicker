@@ -32,10 +32,7 @@ android {
 
     buildFeatures {
         dataBinding = true
-    }
-
-    viewBinding {
-        enabled = true
+        viewBinding = true
     }
 
     compileOptions {
@@ -50,6 +47,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.ext_junit
     androidTestImplementation Dependencies.espresso_core
@@ -96,5 +94,8 @@ dependencies {
 
     implementation Dependencies.rxJava
     implementation Dependencies.rxAndroid
+
+    implementation Dependencies.navigationFragment
+    implementation Dependencies.navigationUI
 
 }

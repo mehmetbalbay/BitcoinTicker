@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/marketFragment">
+
+    <fragment
+        android:id="@+id/marketFragment"
+        android:name="com.mehmetbalbay.bitcointicker.view.ui.main.MarketFragment"
+        android:label="MarketFragment">
+        <action
+            android:id="@+id/action_marketFragment_to_myCoinsFragment"
+            app:destination="@id/myCoinsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myCoinsFragment"
+        android:name="com.mehmetbalbay.bitcointicker.view.ui.mycoins.MyCoinsFragment"
+        android:label="MyCoinsFragment">
+        <action
+            android:id="@+id/action_myCoinsFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.mehmetbalbay.bitcointicker.view.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>
