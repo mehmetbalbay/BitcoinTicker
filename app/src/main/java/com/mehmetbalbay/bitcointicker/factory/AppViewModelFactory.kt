@@ -1,4 +1,4 @@
-package com.mehmetbalbay.bitcointicker.di
+package com.mehmetbalbay.bitcointicker.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

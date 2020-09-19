@@ -22,6 +22,7 @@ class MainActivity : ViewModelActivity(), HasAndroidInjector {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initializeUI()
     }

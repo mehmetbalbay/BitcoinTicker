@@ -65,7 +65,7 @@ dependencies {
 
     implementation Dependencies.mpChart
 
-    implementation Dependencies.mpChart
+    implementation Dependencies.hawk
 
     implementation Dependencies.dagger
     kapt Dependencies.dagger_compiler
@@ -97,5 +97,7 @@ dependencies {
 
     implementation Dependencies.navigationFragment
     implementation Dependencies.navigationUI
+
+    implementation Dependencies.fireBaseAuth
 
 }

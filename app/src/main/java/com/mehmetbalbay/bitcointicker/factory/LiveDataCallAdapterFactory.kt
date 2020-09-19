@@ -1,6 +1,8 @@
-package com.mehmetbalbay.bitcointicker.api
+package com.mehmetbalbay.bitcointicker.factory
 
 import androidx.lifecycle.LiveData
+import com.mehmetbalbay.bitcointicker.api.ApiResponse
+import com.mehmetbalbay.bitcointicker.api.LiveDataCallAdapter
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType

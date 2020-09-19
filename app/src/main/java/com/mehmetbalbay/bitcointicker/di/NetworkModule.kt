@@ -1,8 +1,8 @@
 package com.mehmetbalbay.bitcointicker.di
 
 import com.mehmetbalbay.bitcointicker.api.Api
-import com.mehmetbalbay.bitcointicker.api.LiveDataCallAdapterFactory
 import com.mehmetbalbay.bitcointicker.api.RequestInterceptor
+import com.mehmetbalbay.bitcointicker.factory.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

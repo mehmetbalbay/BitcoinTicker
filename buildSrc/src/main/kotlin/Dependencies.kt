@@ -49,6 +49,9 @@ object Dependencies {
     // Logging
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
+    // Shared Pref
+    val hawk = "com.orhanobut:hawk:${Versions.hawk}"
+
     // RX JAVA ANDROID
     val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
@@ -65,6 +68,9 @@ object Dependencies {
     // Navigation Component
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
     val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+
+    // Firebase
+    val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBase}"
 
     // Test IMPL
     val junit = "junit:junit:${Versions.junit}"

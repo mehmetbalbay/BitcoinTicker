@@ -4,4 +4,9 @@
     <string name="market_fragment">Market</string>
     <string name="my_coins_fragment">My Coins</string>
     <string name="settings_fragment">Settings</string>
+    <string name="pref_welcome_title">WELCOME TO \nBITCOIN TICKER</string>
+    <string name="pref_sub_title">To get started, select your preferences:</string>
+    <string name="pref_default_lang">Default Language</string>
+    <string name="pref_default_currency">Default Currency</string>
+    <string name="pref_start_btn">Start</string>
 </resources>

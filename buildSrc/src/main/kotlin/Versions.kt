@@ -42,4 +42,6 @@ object Versions {
 
     const val nav_version = "2.3.0"
 
+    const val fireBase = "19.4.0"
+
 }
