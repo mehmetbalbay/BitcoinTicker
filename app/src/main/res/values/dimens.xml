@@ -6,4 +6,7 @@
     <dimen name="splash_progress_margin_top">16sp</dimen>
     <dimen name="pref_screen_currency_spinner_margin_top">8dp</dimen>
     <dimen name="pref_screen_start_button">40dp</dimen>
+    <dimen name="view_toolbar_height">60dp</dimen>
+    <dimen name="toolbar_right_container_width_height">60dp</dimen>
+    <dimen name="market_tab_height">60dp</dimen>
 </resources>

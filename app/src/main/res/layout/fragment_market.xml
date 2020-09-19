@@ -1,10 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mehmetbalbay.bitcointicker.view.ui.main.MainActivityViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/fragment_back_dark_color"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/view_toolbar" />
+
+        <LinearLayout
+            android:id="@+id/tableCoins"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/market_tab_height"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/coin_table_hashtag"
+                android:textColor="@color/gray"
+                tools:text="#" />
+
+            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/coin_table_coin"
+                android:textColor="@color/gray"
+                tools:text="COIN" />
+
+            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/coin_table_price"
+                android:textColor="@color/gray"
+                tools:text="PRICE" />
+
+            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/coin_table_hour"
+                android:textColor="@color/gray"
+                tools:text="24H" />
+
+            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/coin_table_market_cap"
+                android:textColor="@color/gray"
+                tools:text="MARKET CAP" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/coinsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableCoins"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/market_tab_height"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/coin_table_hashtag"
+        android:textColor="@color/white"
+        tools:text="1" />
+
+    <LinearLayout
+        android:id="@+id/coinContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/pref_icon"
+            tools:ignore="ContentDescription" />
+
+        <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:text="@string/coin_table_coin"
+            android:textColor="@color/white"
+            tools:text="BTC" />
+
+    </LinearLayout>
+
+    <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/coin_table_price"
+        android:textColor="@color/white"
+        tools:text="44,051 XRP" />
+
+    <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/coin_table_hour"
+        android:textColor="@color/white"
+        tools:text="24H" />
+
+    <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/coin_table_market_cap"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        tools:text="814,863,612,993 XRP" />
+
+</LinearLayout>

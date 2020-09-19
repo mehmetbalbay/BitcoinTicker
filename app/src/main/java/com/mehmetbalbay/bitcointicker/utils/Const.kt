@@ -6,4 +6,20 @@ object Const {
     // Shared Pref Key
     const val DEFAULT_LANGUAGE = "defaultLanguage"
     const val DEFAULT_CURRENCY = "defaultCurrency"
+
+    // Coins Markets Params
+    const val vsCurrency = "vs_currency"
+    const val priceChangePercentage = "price_change_percentage"
+    const val page = "page"
+    const val perPage = "per_page"
+    const val order = "market_cap_desc"
+    const val sparkline = "sparkline"
+
+    // Coins Markets Params Value
+    const val vsCurrencyValue = "vs_currency"
+    const val priceChangePercentageValue = "price_change_percentage"
+    const val pageValue = "page"
+    const val perPageValue = "per_page"
+    const val orderValue = "market_cap_desc"
+    const val sparklineValue = "sparkline"
 }

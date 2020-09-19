@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BitcoinTicker</string>
+    <string name="app_name">Bitcoin Ticker</string>
     <string name="loodos">Loodos</string>
     <string name="market_fragment">Market</string>
     <string name="my_coins_fragment">My Coins</string>
@@ -9,4 +9,11 @@
     <string name="pref_default_lang">Default Language</string>
     <string name="pref_default_currency">Default Currency</string>
     <string name="pref_start_btn">Start</string>
+    <string name="title">Title</string>
+
+    <string name="coin_table_hashtag">#</string>
+    <string name="coin_table_coin">COIN</string>
+    <string name="coin_table_price">PRICE</string>
+    <string name="coin_table_hour">24H</string>
+    <string name="coin_table_market_cap">MARKET CAP</string>
 </resources>
