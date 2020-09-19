@@ -104,4 +104,6 @@ dependencies {
 
     implementation Dependencies.fireBaseAuth
 
+    implementation Dependencies.baseadapter
+
 }

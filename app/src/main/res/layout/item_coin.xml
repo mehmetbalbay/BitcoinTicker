@@ -1,80 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tableCoins"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/market_tab_height"
-    android:background="@color/colorPrimaryDark"
-    android:orientation="horizontal">
+    <data>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/coin_table_hashtag"
-        android:textColor="@color/white"
-        tools:text="1" />
+        <variable
+            name="currentItem"
+            type="com.mehmetbalbay.bitcointicker.models.network.CurrencyItem" />
+    </data>
 
-    <LinearLayout
-        android:id="@+id/coinContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/pref_icon"
-            tools:ignore="ContentDescription" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableCoins"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/market_tab_height"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
 
         <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+            android:id="@+id/marketCapRank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            android:text="@string/coin_table_coin"
+            android:gravity="center"
+            android:padding="8dp"
             android:textColor="@color/white"
-            tools:text="BTC" />
+            android:textSize="12sp"
+            app:bindingIntToText="@{currentItem.marketCapRank}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/coinContainer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/coinContainer"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/currentPrice"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/marketCapRank"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/coin_table_price"
-        android:textColor="@color/white"
-        tools:text="44,051 XRP" />
+            <ImageView
+                android:id="@+id/coinImage"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:bindingCoinImageUrl="@{currentItem.image}"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/pref_icon" />
 
-    <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/coin_table_hour"
-        android:textColor="@color/white"
-        tools:text="24H" />
+            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                android:id="@+id/symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="@{currentItem.symbol.toUpperCase()}"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="BTC" />
 
-    <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/coin_table_market_cap"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        tools:text="814,863,612,993 XRP" />
+        </LinearLayout>
 
-</LinearLayout>
+        <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+            android:id="@+id/currentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:bindingMarketCapToText="@{currentItem.currentPrice}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/priceChangePercentage24h"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/coinContainer"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="44,051 XRP" />
+
+        <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+            android:id="@+id/priceChangePercentage24h"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:bindingFloatToText="@{currentItem.priceChangePercentage24h}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/marketCap"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/currentPrice"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="-1.5603" />
+
+        <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+            android:id="@+id/marketCap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:bindingMarketCapToText="@{currentItem.marketCap}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/priceChangePercentage24h"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="814,863,612,993 XRP" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

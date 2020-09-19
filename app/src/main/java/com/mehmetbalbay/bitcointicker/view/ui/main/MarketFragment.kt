@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.base.ViewModelFragment
 import com.mehmetbalbay.bitcointicker.databinding.FragmentMarketBinding
 import com.mehmetbalbay.bitcointicker.extension.visible
+import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
+import com.mehmetbalbay.bitcointicker.view.adapter.CoinsMarketsAdapter
+import com.mehmetbalbay.bitcointicker.view.ui.viewholder.coinsmarkets.CoinsMarketsViewHolder
 
-class MarketFragment : ViewModelFragment() {
+class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
 
     private val viewModel: MainActivityViewModel by injectActivityViewModels()
     private lateinit var binding: FragmentMarketBinding
@@ -27,6 +31,7 @@ class MarketFragment : ViewModelFragment() {
             binding = this
             viewModel = this@MarketFragment.viewModel
             lifecycleOwner = this@MarketFragment
+            coinsMarketsAdapter = CoinsMarketsAdapter(this@MarketFragment)
         }.root
 
     }
@@ -56,5 +61,9 @@ class MarketFragment : ViewModelFragment() {
     }
 
     private fun loadCoinsMarkets(page: Int) = this.viewModel.postCoinsMarketsPage(page)
+
+    override fun onItemClick(currentItem: CurrencyItem, view: View) {
+        Toast.makeText(requireContext(), "Test", Toast.LENGTH_LONG).show()
+    }
 
 }

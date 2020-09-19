@@ -8,5 +8,5 @@
     <dimen name="pref_screen_start_button">40dp</dimen>
     <dimen name="view_toolbar_height">60dp</dimen>
     <dimen name="toolbar_right_container_width_height">60dp</dimen>
-    <dimen name="market_tab_height">60dp</dimen>
+    <dimen name="market_tab_height">80dp</dimen>
 </resources>

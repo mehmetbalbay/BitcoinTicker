@@ -44,4 +44,6 @@ object Versions {
 
     const val fireBase = "19.4.0"
 
+    const val baseAdapter = "0.1.3"
+
 }

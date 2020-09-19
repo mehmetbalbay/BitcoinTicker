@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
             type="com.mehmetbalbay.bitcointicker.view.ui.main.MainActivityViewModel" />
+
+        <variable
+            name="coinsMarketsAdapter"
+            type="com.mehmetbalbay.bitcointicker.view.adapter.CoinsMarketsAdapter" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -84,8 +89,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/coinsRecycler"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            app:adapter="@{coinsMarketsAdapter}"
+            app:adapterCoinsMarkets="@{viewModel.coinsMarketsLiveData}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_coin" />
 
     </LinearLayout>
 </layout>

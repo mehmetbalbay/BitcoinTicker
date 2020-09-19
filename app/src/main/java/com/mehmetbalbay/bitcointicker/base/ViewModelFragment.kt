@@ -3,6 +3,7 @@ package com.mehmetbalbay.bitcointicker.base
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -34,5 +35,9 @@ abstract class ViewModelFragment : Fragment() {
         @LayoutRes resId: Int,
         container: ViewGroup?
     ): T = DataBindingUtil.inflate(inflater, resId, container, false)
+
+    protected fun setToolbarTitle(view: TextView, title: String) {
+        view.text = title
+    }
 
 }

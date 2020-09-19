@@ -72,6 +72,9 @@ object Dependencies {
     // Firebase
     val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBase}"
 
+    // Fast And Effective BaseAdapter
+    val baseadapter = "com.github.skydoves:baserecyclerviewadapter:${Versions.baseAdapter}"
+
     // Test IMPL
     val junit = "junit:junit:${Versions.junit}"
     val ext_junit = "androidx.test.ext:junit:${Versions.ext_junit}"
