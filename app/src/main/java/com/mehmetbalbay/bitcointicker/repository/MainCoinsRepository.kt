@@ -112,8 +112,7 @@ constructor(
     fun dataAddCoinFavorite(firebaseUser: FirebaseUser, coinDetailItem: CoinDetailItem) =
         fireStore.addCoinFavorite(firebaseUser, coinDetailItem)
 
-    fun getMyFavoriteCoinList(firebaseUser: FirebaseUser) =
-        fireStore.getMyCoinFavoriteList(firebaseUser)
+    //fun getMyFavoriteCoinList(firebaseUser: FirebaseUser) = fireStore.getMyCoinFavoriteList(firebaseUser)
 
     fun getCoinsMarketsList() = coinsMarketsDao.getCoinsMarkets()
 
@@ -126,9 +125,13 @@ constructor(
         coinsMarketsDao.updateCoinDetail(coinDetailItem)
     }
 
+    /*
     fun onClickFavourite(coinDetailItem: CoinDetailItem): Boolean {
+
         coinDetailItem.isFavorite = !coinDetailItem.isFavorite
         coinsMarketsDao.updateCoinDetail(coinDetailItem)
         return coinDetailItem.isFavorite
+
     }
+         */
 }

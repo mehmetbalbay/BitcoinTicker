@@ -8,12 +8,10 @@ import android.os.Looper
 import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -48,6 +46,8 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     private lateinit var currencyItem: CurrencyItem
     private var coinDetailItem: CoinDetailItem? = null
     private var refreshIntervalTime: Long = 20000
+
+    private var isFavoriteCoin = false
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -134,25 +134,12 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
                     resource?.let {
                         setDetails(it.data)
                         coinDetailItem = it.data
-
                         it.data?.image?.small?.run {
                             toolbarCenterLogo(this)
                         }
-
                         it.data?.isFavorite?.run {
-                            if (this) {
-                                binding.toolbar.add.background = ContextCompat.getDrawable(
-                                    requireContext(),
-                                    R.drawable.ic_baseline_remove_24
-                                )
-                            } else {
-                                binding.toolbar.add.background = ContextCompat.getDrawable(
-                                    requireContext(),
-                                    R.drawable.ic_baseline_add_24
-                                )
-                            }
-                        }
 
+                        }
                     }
                     binding.detailProgress.gone()
                     binding.detailContainer.visible()
@@ -171,8 +158,8 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     private fun setDetails(coinDetailItem: CoinDetailItem?) {
         coinDetailItem?.let {
             setDescription(it.description)
-            setCurrentPrice(it.marketData.currentPrice)
-            setPriceChangePercentage24hIn(it.marketData.priceChange24hInCurrency)
+            setCurrentPrice(it.marketData?.currentPrice)
+            setPriceChangePercentage24hIn(it.marketData?.priceChange24hInCurrency)
             setHashAlgorithm(it.hashingAlgorithm)
         }
     }
@@ -256,6 +243,7 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     private fun initializeToolbar(currencyItem: CurrencyItem?) {
         binding.toolbar.back.visible()
         binding.toolbar.add.visible()
+        binding.toolbar.add.setBackgroundResource(R.drawable.ic_baseline_add_24)
         currencyItem?.let {
             binding.toolbar.title.text = it.name
         }
@@ -265,7 +253,14 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
         binding.toolbar.add.let {
             it.setOnClickListener {
                 coinDetailItem?.run {
-                    authViewModel.user?.let { fireBaseUser ->
+                    val firebaseUserData = authViewModel.user?.let { fireBaseUser ->
+                        isFavoriteCoin = if (isFavoriteCoin) {
+                            binding.toolbar.add.setBackgroundResource(R.drawable.ic_baseline_add_24)
+                            false
+                        } else {
+                            binding.toolbar.add.setBackgroundResource(R.drawable.ic_baseline_remove_24)
+                            true
+                        }
                         viewModel.onAddFavoriteFireStore(fireBaseUser, this)
                     }
                 }
@@ -289,14 +284,11 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     }
 
     override fun onStarted() {
-        Log.d("TAGS", "")
     }
 
     override fun onSuccess() {
-        Log.d("TAGS", "")
     }
 
     override fun onFailure(message: String) {
-        Log.d("TAGS", "")
     }
 }

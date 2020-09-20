@@ -28,12 +28,15 @@ object Const {
 
     // My Coins Params
     const val myCoinCollectionName = "MyCoins"
-    const val coinId = "coin_id"
-    const val coinSymbol = "coinSymbol"
-    const val coinName = "coinName"
-    const val coinImage = "coinImage"
+    const val coinId = "id"
+    const val coinSymbol = "symbol"
+    const val coinName = "name"
+    const val coinImage = "image"
+    const val coinDescription = "description"
+    const val coinMarketData = "marketData"
+    const val coinFavorite = "favorite"
+
     const val coinHashingAlgorithm = "coinHashingAlgorithm"
-    const val coinDescription = "coinDescription"
-    const val isFavorite = "isFavorite"
     const val myFavoriteList = "MyFavoriteList"
+    const val coinDetailItem = "coinDetailItem"
 }

@@ -46,27 +46,8 @@ constructor(
     }
 
     fun onAddFavoriteFireStore(firebaseUser: FirebaseUser, coinDetailItem: CoinDetailItem) {
-        if (!coinDetailItem.isFavorite) {
-            myCoinListener?.onStarted()
-            val disposable = mainCoinRepository.dataAddCoinFavorite(firebaseUser, coinDetailItem)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    myCoinListener?.onSuccess()
-                    coinDetailItem.isFavorite = !coinDetailItem.isFavorite
-                    onClickedFavourite(coinDetailItem)
-                }, {
-                    it.message?.run {
-                        myCoinListener?.onFailure(this)
-                    }
-                })
-            disposables.add(disposable)
-        }
-    }
-
-    fun getMyCoinFavoriteListTest(firebaseUser: FirebaseUser) {
         myCoinListener?.onStarted()
-        val disposable = mainCoinRepository.getMyFavoriteCoinList(firebaseUser)
+        val disposable = mainCoinRepository.dataAddCoinFavorite(firebaseUser, coinDetailItem)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -81,6 +62,5 @@ constructor(
 
     fun postCoinDetailId(currencyItemId: String) = this.currencyItem.postValue(currencyItemId)
 
-    fun onClickedFavourite(coinDetailItem: CoinDetailItem) =
-        favourite.set(mainCoinRepository.onClickFavourite(coinDetailItem))
+    //fun onClickedFavourite(coinDetailItem: CoinDetailItem) = favourite.set(mainCoinRepository.onClickFavourite(coinDetailItem))
 }

@@ -1,30 +1,30 @@
-package com.mehmetbalbay.bitcointicker.view.adapter
+package com.mehmetbalbay.bitcointicker.view.adapter.mycoins
 
 import android.view.View
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.models.Resource
-import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
-import com.mehmetbalbay.bitcointicker.view.ui.viewholder.coinsmarkets.CoinsMarketsViewHolder
+import com.mehmetbalbay.bitcointicker.models.entity.CoinDetailItem
+import com.mehmetbalbay.bitcointicker.view.ui.viewholder.mycoins.MyCoinsViewHolder
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 
-class CoinsMarketsAdapter(
-    private val delegate: CoinsMarketsViewHolder.Delegate
+class MyCoinsAdapter(
+    private val delegate: MyCoinsViewHolder.Delegate
 ) : BaseAdapter() {
 
     init {
-        addSection(ArrayList<CurrencyItem>())
+        addSection(ArrayList<CoinDetailItem>())
     }
 
-    fun addCurrencyItemList(resource: Resource<List<CurrencyItem>?>) {
+    fun addCurrencyItemList(resource: Resource<List<CoinDetailItem>?>) {
         resource.data?.let {
             sections()[0].addAll(it)
             notifyDataSetChanged()
         }
     }
 
-    fun setData(currencyList: List<CurrencyItem>?) {
+    fun setData(currencyList: List<CoinDetailItem>?) {
         currencyList?.let {
             sections()[0].clear()
             sections()[0].addAll(it)
@@ -32,9 +32,9 @@ class CoinsMarketsAdapter(
         }
     }
 
-    override fun layout(sectionRow: SectionRow): Int = R.layout.item_coin
+    override fun layout(sectionRow: SectionRow): Int = R.layout.item_my_coins
 
     override fun viewHolder(layout: Int, view: View): BaseViewHolder =
-        CoinsMarketsViewHolder(view, delegate)
+        MyCoinsViewHolder(view, delegate)
 
 }

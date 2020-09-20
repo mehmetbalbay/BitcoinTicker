@@ -11,7 +11,7 @@
 
         <variable
             name="coinsMarketsAdapter"
-            type="com.mehmetbalbay.bitcointicker.view.adapter.CoinsMarketsAdapter" />
+            type="com.mehmetbalbay.bitcointicker.view.adapter.coinsmarkets.CoinsMarketsAdapter" />
     </data>
 
     <RelativeLayout

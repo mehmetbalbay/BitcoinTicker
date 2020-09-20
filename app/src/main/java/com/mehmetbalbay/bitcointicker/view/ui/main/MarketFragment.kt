@@ -18,7 +18,7 @@ import com.mehmetbalbay.bitcointicker.enums.Status
 import com.mehmetbalbay.bitcointicker.extension.gone
 import com.mehmetbalbay.bitcointicker.extension.visible
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
-import com.mehmetbalbay.bitcointicker.view.adapter.CoinsMarketsAdapter
+import com.mehmetbalbay.bitcointicker.view.adapter.coinsmarkets.CoinsMarketsAdapter
 import com.mehmetbalbay.bitcointicker.view.ui.viewholder.coinsmarkets.CoinsMarketsViewHolder
 
 class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
@@ -100,7 +100,6 @@ class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
     }
 
     private fun setToolbarItemsVisibility() {
-        binding.toolbar.notification.visible()
         binding.toolbar.search.visible()
         binding.toolbar.centerLogo.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.pref_icon)

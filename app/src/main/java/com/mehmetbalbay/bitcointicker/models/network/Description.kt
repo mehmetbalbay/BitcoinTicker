@@ -8,45 +8,45 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Description(
     @SerializedName("en")
-    val en: String,
+    val en: String?,
     @SerializedName("de")
-    val de: String,
+    val de: String?,
     @SerializedName("es")
-    val es: String,
+    val es: String?,
     @SerializedName("fr")
-    val fr: String,
+    val fr: String?,
     @SerializedName("it")
-    val it: String,
+    val it: String?,
     @SerializedName("pl")
-    val pl: String,
+    val pl: String?,
     @SerializedName("ro")
-    val ro: String,
+    val ro: String?,
     @SerializedName("hu")
-    val hu: String,
+    val hu: String?,
     @SerializedName("nl")
-    val nl: String,
+    val nl: String?,
     @SerializedName("pt")
-    val pt: String,
+    val pt: String?,
     @SerializedName("sv")
-    val sv: String,
+    val sv: String?,
     @SerializedName("vi")
-    val vi: String,
+    val vi: String?,
     @SerializedName("tr")
     val tr: String,
     @SerializedName("ru")
-    val ru: String,
+    val ru: String?,
     @SerializedName("ja")
-    val ja: String,
+    val ja: String?,
     @SerializedName("zh")
-    val zh: String,
+    val zh: String?,
     @SerializedName("zh-tw")
-    val zhTw: String,
+    val zhTw: String?,
     @SerializedName("ko")
-    val ko: String,
+    val ko: String?,
     @SerializedName("ar")
-    val ar: String,
+    val ar: String?,
     @SerializedName("th")
-    val th: String,
+    val th: String?,
     @SerializedName("id")
-    val id: String
+    val id: String?
 ) : Parcelable
