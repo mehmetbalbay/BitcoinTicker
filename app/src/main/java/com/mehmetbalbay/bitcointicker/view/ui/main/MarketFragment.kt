@@ -88,6 +88,8 @@ class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
         }
 
         binding.toolbar.closeBtn.setOnClickListener {
+            hideKeyBoard(requireActivity())
+            binding.toolbar.txtSearch.text.clear()
             binding.toolbar.searchView.gone()
             binding.toolbar.toolbarContainer.visible()
         }

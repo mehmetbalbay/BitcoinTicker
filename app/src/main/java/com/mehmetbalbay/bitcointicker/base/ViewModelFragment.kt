@@ -1,8 +1,11 @@
 package com.mehmetbalbay.bitcointicker.base
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -38,6 +41,18 @@ abstract class ViewModelFragment : Fragment() {
 
     protected fun setToolbarTitle(view: TextView, title: String) {
         view.text = title
+    }
+
+    protected open fun hideKeyBoard(activity: Activity) {
+        val inputManager: InputMethodManager = activity
+            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val currentFocusedView: View? = activity.currentFocus
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(
+                currentFocusedView.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
     }
 
 }
