@@ -23,4 +23,22 @@
     <string name="hash_algorithm">Hash Algorithm</string>
 
     <string name="to_search">Ara</string>
+    <string name="refresh_interval">Refresh Interval</string>
+
+    <string name="login_title">Login</string>
+    <string name="login_subtitle">Signin to your account to continue</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget password ?</string>
+    <string name="login_bottom_right">Login now</string>
+    <string name="login_bottom_left">Already a user?</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
+    <string name="dont_have_account">Don\'t Have Account</string>
+    <string name="register_now">Register Now</string>
+    <string name="register_sub_title">Signup for a new account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+
+    <string name="logout">Logout</string>
 </resources>

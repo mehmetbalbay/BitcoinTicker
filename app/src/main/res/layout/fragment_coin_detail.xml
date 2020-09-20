@@ -18,6 +18,40 @@
             android:id="@+id/toolbar"
             layout="@layout/view_toolbar" />
 
+        <LinearLayout
+            android:id="@+id/refreshContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/refresh_interval"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/refreshInterval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white" />
+
+            <View
+                android:id="@+id/refreshIntervalLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/detailProgress"
             android:layout_width="wrap_content"
@@ -25,118 +59,126 @@
             android:layout_centerInParent="true"
             android:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/detailContainer"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/refreshContainer"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:fillViewport="true">
 
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-                android:id="@+id/hashAlgorithmTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/hash_algorithm"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:visibility="gone" />
-
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
-                android:id="@+id/hashAlgorithm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                tools:text="SHA-256" />
-
-            <View
-                android:id="@+id/descriptionLine"
+            <LinearLayout
+                android:id="@+id/detailContainer"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:visibility="gone" />
-
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-                android:id="@+id/descriptionTxt"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/description"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:visibility="gone" />
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
 
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:maxLength="500"
-                android:textColor="@color/white"
-                tools:text="Description" />
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                    android:id="@+id/hashAlgorithmTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:text="@string/hash_algorithm"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-            <View
-                android:id="@+id/currentPriceLine"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:visibility="gone" />
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/hashAlgorithm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    tools:text="SHA-256" />
 
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-                android:id="@+id/currentPriceTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/current_price"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:visibility="gone" />
+                <View
+                    android:id="@+id/descriptionLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone" />
 
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
-                android:id="@+id/currentPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/white"
-                tools:text="Current Price" />
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                    android:id="@+id/descriptionTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/description"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-            <View
-                android:id="@+id/priceChangePercentage24hLine"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:visibility="gone" />
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:maxLength="500"
+                    android:textColor="@color/white"
+                    tools:text="Description" />
 
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
-                android:id="@+id/price_change_percentage_24hTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/price_change_percentage_24h"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:visibility="gone" />
+                <View
+                    android:id="@+id/currentPriceLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone" />
 
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
-                android:id="@+id/priceChangePercentage24h"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/white"
-                tools:text="24H percentage change" />
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                    android:id="@+id/currentPriceTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/current_price"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-        </LinearLayout>
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/currentPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white"
+                    tools:text="Current Price" />
+
+                <View
+                    android:id="@+id/priceChangePercentage24hLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone" />
+
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
+                    android:id="@+id/price_change_percentage_24hTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/price_change_percentage_24h"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/priceChangePercentage24h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white"
+                    tools:text="24H percentage change" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 </layout>

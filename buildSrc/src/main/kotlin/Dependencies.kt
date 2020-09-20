@@ -72,7 +72,9 @@ object Dependencies {
 
     // Firebase
     val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBase}"
-    val fireBaseFireStore = "com.google.firebase:firebase-firestore-ktx:${Versions.fireBaseStore}"
+    val fireBaseFireStoreKtx =
+        "com.google.firebase:firebase-firestore-ktx:${Versions.fireBaseStoreKtx}"
+    val fireBaseFireStore = "com.google.firebase:firebase-firestore:${Versions.fireBaseStore}"
 
     // Fast And Effective BaseAdapter
     val baseadapter = "com.github.skydoves:baserecyclerviewadapter:${Versions.baseAdapter}"

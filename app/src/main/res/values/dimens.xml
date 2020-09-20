@@ -9,4 +9,6 @@
     <dimen name="view_toolbar_height">60dp</dimen>
     <dimen name="toolbar_right_container_width_height">60dp</dimen>
     <dimen name="market_tab_height">80dp</dimen>
+    <dimen name="register_login_input_start_end">16dp</dimen>
+    <dimen name="toolbar_icon_padding">14dp</dimen>
 </resources>

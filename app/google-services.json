@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "95937859303",
+    "firebase_url": "https://bitcointicker-956fb.firebaseio.com",
+    "project_id": "bitcointicker-956fb",
+    "storage_bucket": "bitcointicker-956fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95937859303:android:3af344dd6803282c1c1c42",
+        "android_client_info": {
+          "package_name": "com.mehmetbalbay.bitcointicker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95937859303-gbjhfvctvk4ffbd7ja1h9d2b7218rdds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5cn-W0o2s5rj0PT8Hp9bc-Xyrr0_o2cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95937859303-gbjhfvctvk4ffbd7ja1h9d2b7218rdds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

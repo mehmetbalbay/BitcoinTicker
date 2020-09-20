@@ -22,4 +22,7 @@ object Const {
     const val perPageValue = "per_page"
     const val orderValue = "market_cap_desc"
     const val sparklineValue = "sparkline"
+
+    // Auth Params
+    const val IS_LOGIN = "isLogin"
 }

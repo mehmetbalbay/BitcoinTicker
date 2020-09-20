@@ -1,6 +1,5 @@
 package com.mehmetbalbay.bitcointicker.view.ui.auth
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mehmetbalbay.bitcointicker.repository.UserRepository
@@ -88,7 +87,7 @@ constructor(
         disposables.add(disposable)
     }
 
-    fun logout(view: View) {
+    fun logout() {
         repository.logout()
     }
 

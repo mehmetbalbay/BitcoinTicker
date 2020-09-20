@@ -1,6 +1,6 @@
 package com.mehmetbalbay.bitcointicker.binding
 
-import android.annotation.SuppressLint
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -25,14 +25,32 @@ fun bindingFloatToText(textView: TextView, value: Float) {
     textView.text = value.toString()
 }
 
-@SuppressLint("SetTextI18n")
+@BindingAdapter("bindingPriceChangePercentage24hToText")
+fun bindingPriceChangePercentage24hToText(textView: TextView, value: Float) {
+    val price24HPercentageValue: String = value.toString()
+    if (price24HPercentageValue.contains("-")) {
+        textView.setTextColor(Color.RED)
+    } else {
+        textView.setTextColor(Color.GREEN)
+    }
+    val combineString = "$value %"
+    textView.text = combineString
+}
+
 @BindingAdapter("bindingMarketCapToText")
 fun bindingMarketCapToText(textView: TextView, value: Float) {
     val castValue = value.toString()
+    var combineString = ""
     val currency = SharedPreferenceHelper.getSharedData(Const.DEFAULT_CURRENCY) as String?
     currency?.let {
-        textView.text = "$castValue $it"
+        combineString = if (castValue.length >= 6) {
+            "${castValue.substring(0, 6)} $it"
+
+        } else {
+            "$castValue $it"
+        }
     }
+    textView.text = combineString
 }
 
 @BindingAdapter("bindingIntToText")

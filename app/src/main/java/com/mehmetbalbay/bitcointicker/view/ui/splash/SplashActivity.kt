@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.helper.SharedPreferenceHelper
 import com.mehmetbalbay.bitcointicker.utils.Const
-import com.mehmetbalbay.bitcointicker.utils.startMainActivity
+import com.mehmetbalbay.bitcointicker.utils.startLoginActivity
 import com.mehmetbalbay.bitcointicker.utils.startPrefScreenActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -21,15 +21,12 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed({
 
-            val defaultLang =
-                SharedPreferenceHelper.getSharedData(Const.DEFAULT_LANGUAGE) as String?
-            val defaultCurrency =
-                SharedPreferenceHelper.getSharedData(Const.DEFAULT_CURRENCY) as String?
-
-            if (defaultLang.isNullOrEmpty() && defaultCurrency.isNullOrEmpty()) {
+            val isLogin =
+                SharedPreferenceHelper.getSharedData(Const.IS_LOGIN) as Boolean?
+            if (isLogin != null && isLogin) {
                 startPrefScreenActivity()
             } else {
-                startMainActivity()
+                startLoginActivity()
             }
             this.finish()
         }, SPLASH_REMAIN_COUNT.toLong())

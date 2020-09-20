@@ -1,6 +1,7 @@
 package com.mehmetbalbay.bitcointicker.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mehmetbalbay.bitcointicker.api.ApiResponse
 import com.mehmetbalbay.bitcointicker.api.BTService
 import com.mehmetbalbay.bitcointicker.helper.SharedPreferenceHelper
@@ -44,11 +45,14 @@ constructor(
                 }
 
                 override fun shouldFetch(data: CoinDetailItem?): Boolean {
-                    return data == null
+                    return true
                 }
 
                 override fun loadFromDb(): LiveData<CoinDetailItem> {
-                    return getCoinsMarketsDetail(coinItemId)
+                    val coinDetailItem = getCoinsMarketsDetail(coinItemId)
+                    val data: MutableLiveData<CoinDetailItem> = MutableLiveData()
+                    data.postValue(coinDetailItem)
+                    return data
                 }
 
                 override fun fetchService(): LiveData<ApiResponse<CoinDetailItem>> {

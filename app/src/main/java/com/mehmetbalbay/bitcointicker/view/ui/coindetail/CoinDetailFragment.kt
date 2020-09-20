@@ -3,6 +3,11 @@ package com.mehmetbalbay.bitcointicker.view.ui.coindetail
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,10 +40,22 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
     lateinit var viewModelFactory: AppViewModelFactory
     private val viewModel by lazy { vm(viewModelFactory, CoinDetailViewModel::class) }
     private lateinit var binding: FragmentCoinDetailBinding
+    private lateinit var currencyItem: CurrencyItem
+    private var refreshIntervalTime: Long = 2000
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
+    }
+
+    companion object {
+        private const val WHAT_MSG = 1
+    }
+
+    private val mHandler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: Message) {
+            loadCoinDetail(currencyItem)
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -68,12 +85,34 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
         return binding.root
     }
 
+    private fun initAndRefreshIntervalTime() {
+        val refreshTime: String = refreshIntervalTime.toString()
+        binding.refreshInterval.setText(refreshTime)
+        binding.refreshInterval.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                s?.let {
+                    if (it.isNotEmpty()) {
+                        setIntervalTime(it.trim().toString().toLong())
+                    }
+                }
+            }
+        })
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initAndRefreshIntervalTime()
         val bundle = arguments
         bundle?.let {
-            val currencyItem = it.get("currencyItem") as CurrencyItem
+            currencyItem = it.get("currencyItem") as CurrencyItem
             loadCoinDetail(currencyItem)
             initializeToolbar(currencyItem)
         }
@@ -93,6 +132,10 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
                     }
                     binding.detailProgress.gone()
                     binding.detailContainer.visible()
+
+                    val msg = Message.obtain()
+                    msg.what = WHAT_MSG
+                    mHandler.sendMessageDelayed(msg, refreshIntervalTime)
                 }
                 Status.ERROR -> {
                     binding.detailProgress.gone()
@@ -148,7 +191,8 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
                         this.btc.toString()
                     }
                 }
-                binding.currentPrice.text = "$currentPriceStr $defaultCurrency"
+                val combineString = "$currentPriceStr $defaultCurrency"
+                binding.currentPrice.text = combineString
                 binding.currentPriceTxt.visible()
                 binding.currentPriceLine.visible()
             }
@@ -172,7 +216,8 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
                     this.btc.toString()
                 }
             }
-            binding.priceChangePercentage24h.text = "$priceChangePercentage24hInStr %"
+            val combineString = "$priceChangePercentage24hInStr %"
+            binding.priceChangePercentage24h.text = combineString
             binding.priceChangePercentage24hTxt.visible()
             binding.priceChangePercentage24hLine.visible()
         }
@@ -199,5 +244,14 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
         currencyItem?.let {
             viewModel.postCoinDetailId(it)
         }
+    }
+
+    private fun setIntervalTime(changedTime: Long) {
+        refreshIntervalTime = changedTime
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mHandler.removeMessages(WHAT_MSG)
     }
 }

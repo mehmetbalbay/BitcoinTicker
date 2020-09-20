@@ -43,7 +43,7 @@ open class BaseBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    fun getWindowHeight(): Int {
+    private fun getWindowHeight(): Int {
         // Calculate window height for fullscreen use
         val displayMetrics = DisplayMetrics()
         (context as Activity?)?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
