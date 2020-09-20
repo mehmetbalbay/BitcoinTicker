@@ -54,31 +54,11 @@ constructor(
         }
     }
 
-    /*
-    fun getMyCoinFavoriteListTest(firebaseUser: FirebaseUser) {
-        myCoinListener?.onStarted()
-        val disposable = mainCoinsRepository.getMyFavoriteCoinList(firebaseUser)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                myCoinListener?.onSuccess()
-            }, {
-                it.message?.run {
-                    myCoinListener?.onFailure(this)
-                }
-            })
-        disposables.add(disposable)
-    }
-
-     */
-
     fun fetchStatus(resource: Resource<List<CurrencyItem>>) {
         fetchStatus = resource.fetchStatus
     }
 
     fun postCoinsMarketsPage(page: Int) = this.coinsMarketsPage.postValue(page)
-
-    //fun getFavoriteCoins(firebaseUser: FirebaseUser) = this.mainCoinsRepository.getMyFavoriteCoinList(firebaseUser)
 
     fun postSearchCoinsMarketsPage(searchKey: String) =
         this.mainCoinsRepository.getSearchCoinsMarketsList(searchKey)

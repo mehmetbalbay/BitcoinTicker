@@ -15,6 +15,7 @@ import com.mehmetbalbay.bitcointicker.view.ui.auth.AuthViewModel
 class SettingsFragment : ViewModelFragment() {
 
     private val viewModel: AuthViewModel by injectActivityViewModels()
+    private val authViewModel: AuthViewModel by injectViewModels()
     private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreateView(
@@ -35,6 +36,17 @@ class SettingsFragment : ViewModelFragment() {
         super.onViewCreated(view, savedInstanceState)
         setToolbarTitle(binding.toolbar.title, getString(R.string.settings_fragment))
         setClickEventListeners()
+        setUserData()
+    }
+
+    private fun setUserData() {
+        val firebaseUser = authViewModel.user
+        firebaseUser?.let {
+            val welcomeText = "Welcome ${it.displayName}"
+            val email = "Email: ${it.email}"
+            binding.welcomeText.text = welcomeText
+            binding.email.text = email
+        }
     }
 
     private fun setClickEventListeners() {

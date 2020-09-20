@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.base.ViewModelActivity
 import com.mehmetbalbay.bitcointicker.databinding.ActivityMainBinding
-import com.mehmetbalbay.bitcointicker.helper.BackgroundService
+import com.mehmetbalbay.bitcointicker.helper.BackgroundRefreshService
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -34,17 +34,17 @@ class MainActivity : ViewModelActivity(), HasAndroidInjector {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout)
         initializeUI()
 
-        //startBackgroundService()
+        startBackgroundService()
     }
 
-    fun startBackgroundService() {
-        val serviceIntent = Intent(this, BackgroundService::class.java)
+    private fun startBackgroundService() {
+        val serviceIntent = Intent(this, BackgroundRefreshService::class.java)
         serviceIntent.putExtra("isStart", true)
         ContextCompat.startForegroundService(this, serviceIntent)
     }
 
     fun stopService() {
-        val serviceIntent = Intent(this, BackgroundService::class.java)
+        val serviceIntent = Intent(this, BackgroundRefreshService::class.java)
         serviceIntent.putExtra("isStart", false)
         stopService(serviceIntent)
     }

@@ -41,4 +41,6 @@
     <string name="create_account">Create Account</string>
 
     <string name="logout">Logout</string>
+    <string name="welcome">Welcome</string>
+    <string name="user_email">Email:</string>
 </resources>
