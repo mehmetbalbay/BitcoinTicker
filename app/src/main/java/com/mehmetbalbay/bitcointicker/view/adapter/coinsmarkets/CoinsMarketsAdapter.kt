@@ -1,6 +1,7 @@
 package com.mehmetbalbay.bitcointicker.view.adapter.coinsmarkets
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.models.Resource
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
@@ -8,6 +9,7 @@ import com.mehmetbalbay.bitcointicker.view.ui.viewholder.coinsmarkets.CoinsMarke
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
+import kotlinx.android.synthetic.main.item_coin.view.*
 
 class CoinsMarketsAdapter(
     private val delegate: CoinsMarketsViewHolder.Delegate
@@ -36,5 +38,25 @@ class CoinsMarketsAdapter(
 
     override fun viewHolder(layout: Int, view: View): BaseViewHolder =
         CoinsMarketsViewHolder(view, delegate)
+
+    override fun onBindViewHolder(viewHolder: BaseViewHolder, position: Int) {
+        super.onBindViewHolder(viewHolder, position)
+        val colorPos = position % 2
+        if (colorPos == 0) {
+            viewHolder.itemView.tableCoins.setBackgroundColor(
+                ContextCompat.getColor(
+                    viewHolder.itemView.context,
+                    R.color.colorPrimaryDark
+                )
+            )
+        } else {
+            viewHolder.itemView.tableCoins.setBackgroundColor(
+                ContextCompat.getColor(
+                    viewHolder.itemView.context,
+                    R.color.colorPrimary
+                )
+            )
+        }
+    }
 
 }

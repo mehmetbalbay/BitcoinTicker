@@ -133,6 +133,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:visibility="gone"
+            tools:visibility="visible"
             app:adapter="@{coinsMarketsAdapter}"
             app:adapterCoinsMarkets="@{viewModel.coinsMarketsLiveData}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
