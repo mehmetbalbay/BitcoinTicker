@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mehmetbalbay.bitcointicker.models.network.CoinDetailItem
+import com.mehmetbalbay.bitcointicker.models.entity.CoinDetailItem
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
 
 @Dao

@@ -3,6 +3,7 @@ package com.mehmetbalbay.bitcointicker.models.network
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.mehmetbalbay.bitcointicker.models.entity.CurrentPrice
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -25,10 +26,6 @@ data class MarketData(
     val priceChange24hInCurrency: PriceChange24hInCurrency,
     @SerializedName("price_change_percentage_24h_in_currency")
     val priceChangePercentage24hInCurrency: PriceChangePercentage24hInCurrency?,
-    @SerializedName("market_cap_change_24h_in_currency")
-    val marketCapChange24hInCurrency: MarketCapChange24hInCurrency,
-    @SerializedName("market_cap_change_percentage_24h_in_currency")
-    val marketCapChangePercentage24hInCurrency: MarketCapChangePercentage24hInCurrency,
     @SerializedName("total_supply")
     val totalSupply: Double,
     @SerializedName("max_supply")

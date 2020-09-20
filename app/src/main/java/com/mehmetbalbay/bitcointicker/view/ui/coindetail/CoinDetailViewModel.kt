@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import com.mehmetbalbay.bitcointicker.base.LiveCoroutineViewModel
 import com.mehmetbalbay.bitcointicker.models.Resource
-import com.mehmetbalbay.bitcointicker.models.network.CoinDetailItem
+import com.mehmetbalbay.bitcointicker.models.entity.CoinDetailItem
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
 import com.mehmetbalbay.bitcointicker.repository.MainCoinsRepository
 import timber.log.Timber

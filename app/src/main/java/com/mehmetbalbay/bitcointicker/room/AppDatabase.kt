@@ -3,9 +3,12 @@ package com.mehmetbalbay.bitcointicker.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mehmetbalbay.bitcointicker.models.network.CoinDetailItem
+import com.mehmetbalbay.bitcointicker.models.entity.CoinDetailItem
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
-import com.mehmetbalbay.bitcointicker.room.converters.*
+import com.mehmetbalbay.bitcointicker.room.converters.DescriptionDataConverter
+import com.mehmetbalbay.bitcointicker.room.converters.ImageDataConverter
+import com.mehmetbalbay.bitcointicker.room.converters.MarketDataConverter
+import com.mehmetbalbay.bitcointicker.room.converters.PriceChange24hInCurrencyConverter
 import com.mehmetbalbay.bitcointicker.room.dao.CoinsMarketsDao
 
 @Database(
@@ -19,9 +22,7 @@ import com.mehmetbalbay.bitcointicker.room.dao.CoinsMarketsDao
         (MarketDataConverter::class),
         (DescriptionDataConverter::class),
         (ImageDataConverter::class),
-        (PriceChange24hInCurrencyConverter::class),
-        (MarketCapChange24hInCurrencyConverter::class),
-        (MarketCapChangePercentage24hInCurrencyConverter::class)
+        (PriceChange24hInCurrencyConverter::class)
     ]
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -1,11 +1,12 @@
-package com.mehmetbalbay.bitcointicker.models.network
+package com.mehmetbalbay.bitcointicker.models.entity
+
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MarketCapChange24hInCurrency(
+data class CurrentPrice(
     @SerializedName("aed")
     val aed: Double,
     @SerializedName("ars")
@@ -103,7 +104,7 @@ data class MarketCapChange24hInCurrency(
     @SerializedName("usd")
     val usd: Double,
     @SerializedName("vef")
-    val vef: Double,
+    val vef: Long,
     @SerializedName("vnd")
     val vnd: Double,
     @SerializedName("xag")

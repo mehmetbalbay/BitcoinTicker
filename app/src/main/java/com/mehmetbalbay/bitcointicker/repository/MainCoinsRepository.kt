@@ -6,7 +6,7 @@ import com.mehmetbalbay.bitcointicker.api.BTService
 import com.mehmetbalbay.bitcointicker.helper.SharedPreferenceHelper
 import com.mehmetbalbay.bitcointicker.models.Envelope
 import com.mehmetbalbay.bitcointicker.models.Resource
-import com.mehmetbalbay.bitcointicker.models.network.CoinDetailItem
+import com.mehmetbalbay.bitcointicker.models.entity.CoinDetailItem
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
 import com.mehmetbalbay.bitcointicker.room.dao.CoinsMarketsDao
 import com.mehmetbalbay.bitcointicker.utils.Const

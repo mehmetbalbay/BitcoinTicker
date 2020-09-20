@@ -18,7 +18,11 @@ import com.mehmetbalbay.bitcointicker.extension.visible
 import com.mehmetbalbay.bitcointicker.extension.vm
 import com.mehmetbalbay.bitcointicker.factory.AppViewModelFactory
 import com.mehmetbalbay.bitcointicker.helper.SharedPreferenceHelper
-import com.mehmetbalbay.bitcointicker.models.network.*
+import com.mehmetbalbay.bitcointicker.models.entity.CoinDetailItem
+import com.mehmetbalbay.bitcointicker.models.entity.CurrentPrice
+import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
+import com.mehmetbalbay.bitcointicker.models.network.Description
+import com.mehmetbalbay.bitcointicker.models.network.PriceChange24hInCurrency
 import com.mehmetbalbay.bitcointicker.utils.Const
 import com.mehmetbalbay.bitcointicker.utils.setImageWithGlide
 import com.mehmetbalbay.bitcointicker.view.ui.base.BaseBottomSheetFragment

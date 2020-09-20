@@ -1,9 +1,12 @@
-package com.mehmetbalbay.bitcointicker.models.network
+package com.mehmetbalbay.bitcointicker.models.entity
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.mehmetbalbay.bitcointicker.models.network.Description
+import com.mehmetbalbay.bitcointicker.models.network.Image
+import com.mehmetbalbay.bitcointicker.models.network.MarketData
 import kotlinx.android.parcel.Parcelize
 
 @Entity
