@@ -29,8 +29,10 @@ class CoinsMarketsViewHolder(
         }
     }
 
-    override fun onClick(v: View?) {
-
+    override fun onClick(view: View?) {
+        view?.let {
+            delegate.onItemClick(currentItem, view)
+        }
     }
 
     override fun onLongClick(v: View?): Boolean = false

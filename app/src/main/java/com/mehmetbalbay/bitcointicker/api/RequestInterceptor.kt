@@ -10,7 +10,6 @@ internal class RequestInterceptor : Interceptor {
         val originalUrl = originalRequest.url()
         val url = originalUrl.newBuilder()
             // Global Request Query Parameters Add
-            .addQueryParameter("lang", "tr-TR")
             .build()
 
         val requestBuilder = originalRequest.newBuilder().url(url)

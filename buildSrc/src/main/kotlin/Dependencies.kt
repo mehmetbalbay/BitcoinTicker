@@ -45,6 +45,7 @@ object Dependencies {
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
     val arch_lifecycle_livedata_ktx =
         "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_version}"
+    val arch_lifecycle = "android.arch.lifecycle:extensions:${Versions.lifecycle_version}"
 
     // Logging
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
@@ -71,6 +72,7 @@ object Dependencies {
 
     // Firebase
     val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBase}"
+    val fireBaseFireStore = "com.google.firebase:firebase-firestore-ktx:${Versions.fireBaseStore}"
 
     // Fast And Effective BaseAdapter
     val baseadapter = "com.github.skydoves:baserecyclerviewadapter:${Versions.baseAdapter}"

@@ -16,4 +16,11 @@
     <string name="coin_table_price">PRICE</string>
     <string name="coin_table_hour">24H</string>
     <string name="coin_table_market_cap">MARKET CAP</string>
+
+    <string name="price_change_percentage_24h">Price Change Percentage 24h In</string>
+    <string name="description">Description</string>
+    <string name="current_price">Current Price</string>
+    <string name="hash_algorithm">Hash Algorithm</string>
+
+    <string name="to_search">Ara</string>
 </resources>

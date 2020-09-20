@@ -6,6 +6,7 @@ import com.mehmetbalbay.bitcointicker.api.BTService
 import com.mehmetbalbay.bitcointicker.helper.SharedPreferenceHelper
 import com.mehmetbalbay.bitcointicker.models.Envelope
 import com.mehmetbalbay.bitcointicker.models.Resource
+import com.mehmetbalbay.bitcointicker.models.network.CoinDetailItem
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
 import com.mehmetbalbay.bitcointicker.room.dao.CoinsMarketsDao
 import com.mehmetbalbay.bitcointicker.utils.Const
@@ -29,6 +30,37 @@ constructor(
     init {
         Timber.d("Injection MainRepository")
     }
+
+    suspend fun loadCoinsMarketsDetail(
+        coinItemId: String
+    ): LiveData<Resource<CoinDetailItem>> =
+        withContext(Dispatchers.IO) {
+            return@withContext object :
+                NetworkBoundRepository<CoinDetailItem, CoinDetailItem>() {
+                override fun saveFetchData(items: CoinDetailItem) {
+                    items.let {
+                        coinsMarketsDao.updateCoinDetail(it)
+                    }
+                }
+
+                override fun shouldFetch(data: CoinDetailItem?): Boolean {
+                    return data == null
+                }
+
+                override fun loadFromDb(): LiveData<CoinDetailItem> {
+                    return getCoinsMarketsDetail(coinItemId)
+                }
+
+                override fun fetchService(): LiveData<ApiResponse<CoinDetailItem>> {
+                    return btService.fetchCoinsDetail(coinItemId)
+                }
+
+                override fun onFetchFailed(envelope: Envelope?) {
+                    Timber.d("onFetchFailed : $envelope")
+                }
+
+            }.asLiveData()
+        }
 
     suspend fun loadCoinsMarkets(page: Int): LiveData<Resource<List<CurrencyItem>>> =
         withContext(Dispatchers.IO) {
@@ -71,4 +103,9 @@ constructor(
         }
 
     fun getCoinsMarketsList() = coinsMarketsDao.getCoinsMarkets()
+
+    fun getSearchCoinsMarketsList(searchKey: String) = coinsMarketsDao.searchCoinsMarkets(searchKey)
+
+    fun getCoinsMarketsDetail(coinItemId: String) =
+        coinsMarketsDao.getCoinsMarketsDetail(coinItemId)
 }

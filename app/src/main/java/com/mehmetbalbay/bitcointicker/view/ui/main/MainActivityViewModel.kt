@@ -17,7 +17,10 @@ constructor(
 ) : LiveCoroutineViewModel() {
 
     private var coinsMarketsPage: MutableLiveData<Int> = MutableLiveData()
+    private var coinsSearchMarketsPage: MutableLiveData<Int> = MutableLiveData()
+    private var searchKeyCoinsMarkets: MutableLiveData<String> = MutableLiveData()
     val coinsMarketsLiveData: LiveData<Resource<List<CurrencyItem>>>
+    var searchCoinsMarketsLiveData: LiveData<List<CurrencyItem>>
 
     var fetchStatus = FetchStatus()
         private set
@@ -30,6 +33,16 @@ constructor(
                 this.mainCoinsRepository.loadCoinsMarkets(page)
             }
         }
+
+        this.searchCoinsMarketsLiveData = this.searchKeyCoinsMarkets.switchMap { searchKey ->
+            launchOnViewModelScope {
+                this.mainCoinsRepository.getSearchCoinsMarketsList(searchKey)
+            }
+        }
+
+        this.searchCoinsMarketsLiveData = launchOnViewModelScope {
+            this.mainCoinsRepository.getCoinsMarketsList()
+        }
     }
 
     fun fetchStatus(resource: Resource<List<CurrencyItem>>) {
@@ -37,5 +50,12 @@ constructor(
     }
 
     fun postCoinsMarketsPage(page: Int) = this.coinsMarketsPage.postValue(page)
+
+    fun postSearchCoinsMarketsPage(searchKey: String) =
+        this.mainCoinsRepository.getSearchCoinsMarketsList(searchKey)
+
+    fun postSearchFullCoinsMarketsPage() =
+        this.mainCoinsRepository.getCoinsMarketsList()
+
 
 }

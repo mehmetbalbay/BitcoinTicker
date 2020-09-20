@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mehmetbalbay.bitcointicker.di.annotations.ViewModelKey
 import com.mehmetbalbay.bitcointicker.factory.AppViewModelFactory
+import com.mehmetbalbay.bitcointicker.view.ui.coindetail.CoinDetailViewModel
 import com.mehmetbalbay.bitcointicker.view.ui.main.MainActivityViewModel
 import dagger.Binds
 import dagger.Module
@@ -18,6 +19,10 @@ internal abstract class ViewModelModule {
     internal abstract fun bindMainActivityViewModel(mainActivityViewModel: MainActivityViewModel): ViewModel
 
     @Binds
-    internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
+    @IntoMap
+    @ViewModelKey(CoinDetailViewModel::class)
+    internal abstract fun bindCoinDetailViewModel(coinDetailViewModel: CoinDetailViewModel): ViewModel
 
+    @Binds
+    internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
 }

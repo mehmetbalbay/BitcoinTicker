@@ -1,6 +1,7 @@
 package com.mehmetbalbay.bitcointicker.di
 
 import com.mehmetbalbay.bitcointicker.di.annotations.FragmentScope
+import com.mehmetbalbay.bitcointicker.view.ui.coindetail.CoinDetailFragment
 import com.mehmetbalbay.bitcointicker.view.ui.main.MarketFragment
 import com.mehmetbalbay.bitcointicker.view.ui.mycoins.MyCoinsFragment
 import com.mehmetbalbay.bitcointicker.view.ui.settings.SettingsFragment
@@ -21,5 +22,9 @@ abstract class MainActivityFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector
     internal abstract fun contributeSettingsFragment(): SettingsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    internal abstract fun contributeCoinDetailFragment(): CoinDetailFragment
 
 }

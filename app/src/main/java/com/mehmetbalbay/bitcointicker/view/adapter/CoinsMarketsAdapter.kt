@@ -24,6 +24,14 @@ class CoinsMarketsAdapter(
         }
     }
 
+    fun setData(currencyList: List<CurrencyItem>?) {
+        currencyList?.let {
+            sections()[0].clear()
+            sections()[0].addAll(it)
+            notifyDataSetChanged()
+        }
+    }
+
     override fun layout(sectionRow: SectionRow): Int = R.layout.item_coin
 
     override fun viewHolder(layout: Int, view: View): BaseViewHolder =

@@ -11,7 +11,11 @@
         <action
             android:id="@+id/action_marketFragment_to_myCoinsFragment"
             app:destination="@id/myCoinsFragment" />
+        <action
+            android:id="@+id/action_marketFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/myCoinsFragment"
         android:name="com.mehmetbalbay.bitcointicker.view.ui.mycoins.MyCoinsFragment"
@@ -20,8 +24,25 @@
             android:id="@+id/action_myCoinsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.mehmetbalbay.bitcointicker.view.ui.settings.SettingsFragment"
         android:label="SettingsFragment" />
+
+    <dialog
+        android:id="@+id/coinDetailFragment"
+        android:name="com.mehmetbalbay.bitcointicker.view.ui.coindetail.CoinDetailFragment"
+        android:label="CoinDetailFragment">
+
+        <action
+            android:id="@+id/action_bottomSheetSampleFragment_self"
+            app:destination="@+id/coinDetailFragment" />
+
+        <argument
+            android:name="coinItem"
+            app:argType="com.mehmetbalbay.bitcointicker.models.network.CurrencyItem" />
+
+    </dialog>
+
 </navigation>

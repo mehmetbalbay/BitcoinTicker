@@ -4,71 +4,155 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_toolbar_height"
-        android:background="@color/colorPrimary"
-        android:paddingTop="8dp">
+        android:background="@color/colorPrimary">
+
 
         <RelativeLayout
-            android:id="@+id/left_container"
-            android:layout_width="@dimen/toolbar_right_container_width_height"
-            android:layout_height="@dimen/toolbar_right_container_width_height"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true">
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/colorPrimary"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <ImageView
-                android:id="@+id/notification"
-                android:layout_width="wrap_content"
+                android:id="@+id/imgSearch"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_baseline_search_24" />
+
+            <EditText
+                android:id="@+id/txtSearch"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_baseline_notifications_24"
-                android:visibility="gone"
-                tools:ignore="ContentDescription"
-                tools:visibility="visible" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="7dp"
+                android:layout_toStartOf="@+id/closeBtn"
+                android:layout_toEndOf="@+id/imgSearch"
+                android:background="@drawable/rounded_rect_small_corner"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:hint="@string/to_search"
+                android:inputType="textCapWords|textPersonName"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/gray"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/closeBtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_baseline_close_24" />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/right_container"
-            android:layout_toEndOf="@+id/left_container"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/pref_icon" />
-
-            <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-        </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/right_container"
-            android:layout_width="@dimen/toolbar_right_container_width_height"
-            android:layout_height="@dimen/toolbar_right_container_width_height"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true">
+            android:id="@+id/toolbarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:paddingTop="8dp"
+            android:visibility="visible"
+            tools:visibility="gone">
 
-            <ImageView
-                android:id="@+id/search"
+            <RelativeLayout
+                android:id="@+id/left_container"
+                android:layout_width="@dimen/toolbar_right_container_width_height"
+                android:layout_height="@dimen/toolbar_right_container_width_height"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription"
+                    tools:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_baseline_notifications_24"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription"
+                    tools:visibility="visible" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/centerContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_baseline_search_24"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/right_container"
+                android:layout_toEndOf="@+id/left_container"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/centerLogo"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp" />
+
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/right_container"
+                android:layout_width="@dimen/toolbar_right_container_width_height"
+                android:layout_height="@dimen/toolbar_right_container_width_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_baseline_search_24"
+                    android:visibility="gone"
+                    tools:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_baseline_add_24"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
