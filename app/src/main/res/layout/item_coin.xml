@@ -92,7 +92,6 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="8dp"
-            android:maxLength="5"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:bindingPriceChangePercentage24hToText="@{currentItem.priceChangePercentage24h}"

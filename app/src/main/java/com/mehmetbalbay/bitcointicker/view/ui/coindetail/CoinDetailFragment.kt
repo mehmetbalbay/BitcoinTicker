@@ -8,10 +8,12 @@ import android.os.Looper
 import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,18 +32,22 @@ import com.mehmetbalbay.bitcointicker.models.network.Description
 import com.mehmetbalbay.bitcointicker.models.network.PriceChange24hInCurrency
 import com.mehmetbalbay.bitcointicker.utils.Const
 import com.mehmetbalbay.bitcointicker.utils.setImageWithGlide
+import com.mehmetbalbay.bitcointicker.view.ui.auth.AuthViewModel
 import com.mehmetbalbay.bitcointicker.view.ui.base.BaseBottomSheetFragment
+import com.mehmetbalbay.bitcointicker.view.ui.mycoins.MyCoinsListener
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class CoinDetailFragment : BaseBottomSheetFragment() {
+class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
 
     @Inject
     lateinit var viewModelFactory: AppViewModelFactory
     private val viewModel by lazy { vm(viewModelFactory, CoinDetailViewModel::class) }
+    private val authViewModel by lazy { vm(viewModelFactory, AuthViewModel::class) }
     private lateinit var binding: FragmentCoinDetailBinding
     private lateinit var currencyItem: CurrencyItem
-    private var refreshIntervalTime: Long = 2000
+    private var coinDetailItem: CoinDetailItem? = null
+    private var refreshIntervalTime: Long = 20000
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -82,6 +88,7 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
             viewModel = this@CoinDetailFragment.viewModel
             lifecycleOwner = this@CoinDetailFragment
         }
+        binding.viewModel?.myCoinListener = this
         return binding.root
     }
 
@@ -126,9 +133,26 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
                 Status.SUCCESS -> {
                     resource?.let {
                         setDetails(it.data)
+                        coinDetailItem = it.data
+
                         it.data?.image?.small?.run {
                             toolbarCenterLogo(this)
                         }
+
+                        it.data?.isFavorite?.run {
+                            if (this) {
+                                binding.toolbar.add.background = ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_baseline_remove_24
+                                )
+                            } else {
+                                binding.toolbar.add.background = ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_baseline_add_24
+                                )
+                            }
+                        }
+
                     }
                     binding.detailProgress.gone()
                     binding.detailContainer.visible()
@@ -238,11 +262,20 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
         binding.toolbar.back.let {
             it.setOnClickListener { dialog?.dismiss() }
         }
+        binding.toolbar.add.let {
+            it.setOnClickListener {
+                coinDetailItem?.run {
+                    authViewModel.user?.let { fireBaseUser ->
+                        viewModel.onAddFavoriteFireStore(fireBaseUser, this)
+                    }
+                }
+            }
+        }
     }
 
     private fun loadCoinDetail(currencyItem: CurrencyItem?) {
         currencyItem?.let {
-            viewModel.postCoinDetailId(it)
+            viewModel.postCoinDetailId(it.id)
         }
     }
 
@@ -253,5 +286,17 @@ class CoinDetailFragment : BaseBottomSheetFragment() {
     override fun onDestroy() {
         super.onDestroy()
         mHandler.removeMessages(WHAT_MSG)
+    }
+
+    override fun onStarted() {
+        Log.d("TAGS", "")
+    }
+
+    override fun onSuccess() {
+        Log.d("TAGS", "")
+    }
+
+    override fun onFailure(message: String) {
+        Log.d("TAGS", "")
     }
 }

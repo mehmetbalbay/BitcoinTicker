@@ -25,4 +25,15 @@ object Const {
 
     // Auth Params
     const val IS_LOGIN = "isLogin"
+
+    // My Coins Params
+    const val myCoinCollectionName = "MyCoins"
+    const val coinId = "coin_id"
+    const val coinSymbol = "coinSymbol"
+    const val coinName = "coinName"
+    const val coinImage = "coinImage"
+    const val coinHashingAlgorithm = "coinHashingAlgorithm"
+    const val coinDescription = "coinDescription"
+    const val isFavorite = "isFavorite"
+    const val myFavoriteList = "MyFavoriteList"
 }

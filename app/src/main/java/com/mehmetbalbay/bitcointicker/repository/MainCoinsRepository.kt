@@ -2,8 +2,10 @@ package com.mehmetbalbay.bitcointicker.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseUser
 import com.mehmetbalbay.bitcointicker.api.ApiResponse
 import com.mehmetbalbay.bitcointicker.api.BTService
+import com.mehmetbalbay.bitcointicker.data.FireStoreSource
 import com.mehmetbalbay.bitcointicker.helper.SharedPreferenceHelper
 import com.mehmetbalbay.bitcointicker.models.Envelope
 import com.mehmetbalbay.bitcointicker.models.Resource
@@ -23,6 +25,7 @@ import kotlin.collections.HashMap
 class MainCoinsRepository @Inject
 constructor(
     private val coinsMarketsDao: CoinsMarketsDao,
+    private val fireStore: FireStoreSource,
     private val btService: BTService
 ) : Repository {
 
@@ -106,10 +109,26 @@ constructor(
             }.asLiveData()
         }
 
+    fun dataAddCoinFavorite(firebaseUser: FirebaseUser, coinDetailItem: CoinDetailItem) =
+        fireStore.addCoinFavorite(firebaseUser, coinDetailItem)
+
+    fun getMyFavoriteCoinList(firebaseUser: FirebaseUser) =
+        fireStore.getMyCoinFavoriteList(firebaseUser)
+
     fun getCoinsMarketsList() = coinsMarketsDao.getCoinsMarkets()
 
     fun getSearchCoinsMarketsList(searchKey: String) = coinsMarketsDao.searchCoinsMarkets(searchKey)
 
     fun getCoinsMarketsDetail(coinItemId: String) =
         coinsMarketsDao.getCoinsMarketsDetail(coinItemId)
+
+    fun getCoinFavoriteUpdate(coinDetailItem: CoinDetailItem) {
+        coinsMarketsDao.updateCoinDetail(coinDetailItem)
+    }
+
+    fun onClickFavourite(coinDetailItem: CoinDetailItem): Boolean {
+        coinDetailItem.isFavorite = !coinDetailItem.isFavorite
+        coinsMarketsDao.updateCoinDetail(coinDetailItem)
+        return coinDetailItem.isFavorite
+    }
 }

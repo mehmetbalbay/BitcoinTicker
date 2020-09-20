@@ -28,13 +28,21 @@ fun bindingFloatToText(textView: TextView, value: Float) {
 @BindingAdapter("bindingPriceChangePercentage24hToText")
 fun bindingPriceChangePercentage24hToText(textView: TextView, value: Float) {
     val price24HPercentageValue: String = value.toString()
-    if (price24HPercentageValue.contains("-")) {
-        textView.setTextColor(Color.RED)
-    } else {
-        textView.setTextColor(Color.GREEN)
+    price24HPercentageValue.let {
+        if (it.contains("-")) {
+            textView.setTextColor(Color.RED)
+        } else {
+            textView.setTextColor(Color.GREEN)
+        }
+
+
+        val combineString = if (it.length >= 5) {
+            "${price24HPercentageValue.substring(0, 5)} %"
+        } else {
+            "$price24HPercentageValue %"
+        }
+        textView.text = combineString
     }
-    val combineString = "$value %"
-    textView.text = combineString
 }
 
 @BindingAdapter("bindingMarketCapToText")

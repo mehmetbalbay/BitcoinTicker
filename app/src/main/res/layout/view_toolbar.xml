@@ -152,7 +152,6 @@
                     android:layout_centerInParent="true"
                     android:layout_marginEnd="8dp"
                     android:padding="@dimen/toolbar_icon_padding"
-                    android:src="@drawable/ic_baseline_add_24"
                     android:visibility="gone"
                     tools:visibility="visible" />
 

@@ -20,11 +20,12 @@ data class CoinDetailItem(
     @SerializedName("name")
     val name: String,
     @SerializedName("image")
-    val image: Image,
+    val image: Image?,
     @SerializedName("market_data")
     val marketData: MarketData,
     @SerializedName("hashing_algorithm")
     val hashingAlgorithm: String?,
     @SerializedName("description")
-    val description: Description?
+    val description: Description?,
+    var isFavorite: Boolean
 ) : Parcelable
