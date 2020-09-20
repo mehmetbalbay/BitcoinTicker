@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.base.ViewModelFragment
 import com.mehmetbalbay.bitcointicker.databinding.FragmentMarketBinding
+import com.mehmetbalbay.bitcointicker.enums.Status
 import com.mehmetbalbay.bitcointicker.extension.gone
 import com.mehmetbalbay.bitcointicker.extension.visible
 import com.mehmetbalbay.bitcointicker.models.network.CurrencyItem
@@ -38,7 +39,6 @@ class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
             lifecycleOwner = this@MarketFragment
             coinsMarketsAdapter = CoinsMarketsAdapter(this@MarketFragment)
         }.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,16 +47,12 @@ class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         loadCoinsMarkets(1)
 
-        binding.toolbar.search.setOnClickListener {
-            binding.toolbar.searchView.visible()
-            binding.toolbar.toolbarContainer.gone()
-        }
+        setClickListeners()
+        setSearchTextListeners()
+        observeCoinsMarketsResource()
+    }
 
-        binding.toolbar.closeBtn.setOnClickListener {
-            binding.toolbar.searchView.gone()
-            binding.toolbar.toolbarContainer.visible()
-        }
-
+    private fun setSearchTextListeners() {
         binding.toolbar.txtSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -83,8 +79,18 @@ class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
                 }
             }
         })
+    }
 
-        observeCoinsMarketsResource()
+    private fun setClickListeners() {
+        binding.toolbar.search.setOnClickListener {
+            binding.toolbar.searchView.visible()
+            binding.toolbar.toolbarContainer.gone()
+        }
+
+        binding.toolbar.closeBtn.setOnClickListener {
+            binding.toolbar.searchView.gone()
+            binding.toolbar.toolbarContainer.visible()
+        }
     }
 
     private fun initializeUI() {
@@ -99,8 +105,22 @@ class MarketFragment : ViewModelFragment(), CoinsMarketsViewHolder.Delegate {
     }
 
     private fun observeCoinsMarketsResource() {
-        viewModel.coinsMarketsLiveData.observe(viewLifecycleOwner, {
-
+        viewModel.coinsMarketsLiveData.observe(viewLifecycleOwner, { resource ->
+            when (resource.status) {
+                Status.LOADING -> {
+                    binding.coinsProgress.visible()
+                    binding.tableCoins.gone()
+                    binding.coinsRecycler.gone()
+                }
+                Status.SUCCESS -> {
+                    binding.coinsProgress.gone()
+                    binding.tableCoins.visible()
+                    binding.coinsRecycler.visible()
+                }
+                Status.ERROR -> {
+                    binding.coinsProgress.gone()
+                }
+            }
         })
     }
 
