@@ -45,9 +45,11 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     private lateinit var binding: FragmentCoinDetailBinding
     private lateinit var currencyItem: CurrencyItem
     private var coinDetailItem: CoinDetailItem? = null
-    private var refreshIntervalTime: Long = 20000
+    private var refreshIntervalTime: Long = 2000L
 
     private var isFavoriteCoin = false
+
+    private var confirmIntervalTime: Long = 0L
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -107,7 +109,7 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
             override fun afterTextChanged(s: Editable?) {
                 s?.let {
                     if (it.isNotEmpty()) {
-                        setIntervalTime(it.trim().toString().toLong())
+                        confirmIntervalTime = it.trim().toString().toLong()
                     }
                 }
             }
@@ -123,7 +125,11 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
             loadCoinDetail(currencyItem)
             initializeToolbar(currencyItem)
         }
+        setClickListeners()
+        observeCoinDetailData()
+    }
 
+    private fun observeCoinDetailData() {
         viewModel.coinDetailLiveData.observe(viewLifecycleOwner, { resource ->
             when (resource.status) {
                 Status.LOADING -> {
@@ -153,6 +159,12 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
                 }
             }
         })
+    }
+
+    private fun setClickListeners() {
+        binding.confirmBtn.setOnClickListener {
+            setIntervalTime(if (confirmIntervalTime != 0L) confirmIntervalTime else refreshIntervalTime)
+        }
     }
 
     private fun setDetails(coinDetailItem: CoinDetailItem?) {

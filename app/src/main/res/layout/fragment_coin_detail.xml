@@ -42,6 +42,14 @@
                 android:backgroundTint="@color/white"
                 android:textColor="@color/white" />
 
+            <Button
+                android:id="@+id/confirm_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:text="@string/confirm_btn"
+                android:textColor="@color/white" />
+
             <View
                 android:id="@+id/refreshIntervalLine"
                 android:layout_width="match_parent"
