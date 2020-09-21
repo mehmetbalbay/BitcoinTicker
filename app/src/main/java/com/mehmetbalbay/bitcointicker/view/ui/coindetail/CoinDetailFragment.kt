@@ -2,11 +2,9 @@ package com.mehmetbalbay.bitcointicker.view.ui.coindetail
 
 import android.app.Dialog
 import android.content.Context
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.os.*
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -189,7 +187,12 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     private fun setDescription(description: Description?) {
         description?.run {
             if (this.tr.isNotEmpty()) {
-                binding.description.text = this.tr
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    binding.description.text = Html.fromHtml(this.tr, Html.FROM_HTML_MODE_COMPACT)
+                } else {
+                    binding.description.text = Html.fromHtml(this.tr)
+                }
+
                 binding.descriptionTxt.visible()
                 binding.descriptionLine.visible()
             }
