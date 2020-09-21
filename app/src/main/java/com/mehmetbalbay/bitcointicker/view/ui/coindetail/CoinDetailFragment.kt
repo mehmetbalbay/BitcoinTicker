@@ -134,8 +134,6 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
         viewModel.coinDetailLiveData.observe(viewLifecycleOwner, { resource ->
             when (resource.status) {
                 Status.LOADING -> {
-                    //binding.detailProgress.visible()
-                    //binding.detailContainer.gone()
                 }
                 Status.SUCCESS -> {
                     resource?.let {
@@ -151,15 +149,13 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
 
                         }
                     }
-                    //binding.detailProgress.gone()
-                    //binding.detailContainer.visible()
 
                     val msg = Message.obtain()
                     msg.what = WHAT_MSG
                     mHandler.sendMessageDelayed(msg, refreshIntervalTime)
                 }
                 Status.ERROR -> {
-                    //binding.detailProgress.gone()
+
                 }
             }
         })

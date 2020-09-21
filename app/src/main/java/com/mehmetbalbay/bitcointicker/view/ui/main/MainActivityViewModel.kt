@@ -25,7 +25,6 @@ constructor(
 
     val coinsMarketsLiveData: LiveData<Resource<List<CurrencyItem>>>
 
-    //val myCoinsLiveData: LiveData<Resource<List<CoinDetailItem>>>
     var searchCoinsMarketsLiveData: LiveData<List<CurrencyItem>>
 
     var myCoinListener: MyCoinsListener? = null

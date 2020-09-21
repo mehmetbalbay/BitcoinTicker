@@ -64,12 +64,11 @@ class MyCoinsFragment : ViewModelFragment(), MyCoinsListener, MyCoinsViewHolder.
     }
 
     private fun subscribeGetMyCoinFavoriteList(firebaseUser: FirebaseUser) {
-        //myCoinListener?.onStarted()
         val disposable = getMyCoinFavoriteList(firebaseUser)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                //myCoinListener?.onSuccess()
+
             }, {
                 it.message?.run {
                 }

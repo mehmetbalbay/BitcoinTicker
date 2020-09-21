@@ -41,10 +41,6 @@ constructor(
         }
     }
 
-    fun refresh() {
-        //movieRepository.
-    }
-
     fun onAddFavoriteFireStore(firebaseUser: FirebaseUser, coinDetailItem: CoinDetailItem) {
         myCoinListener?.onStarted()
         val disposable = mainCoinRepository.dataAddCoinFavorite(firebaseUser, coinDetailItem)
@@ -61,6 +57,4 @@ constructor(
     }
 
     fun postCoinDetailId(currencyItemId: String) = this.currencyItem.postValue(currencyItemId)
-
-    //fun onClickedFavourite(coinDetailItem: CoinDetailItem) = favourite.set(mainCoinRepository.onClickFavourite(coinDetailItem))
 }
