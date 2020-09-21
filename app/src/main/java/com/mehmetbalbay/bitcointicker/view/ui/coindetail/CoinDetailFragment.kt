@@ -18,7 +18,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mehmetbalbay.bitcointicker.R
 import com.mehmetbalbay.bitcointicker.databinding.FragmentCoinDetailBinding
 import com.mehmetbalbay.bitcointicker.enums.Status
-import com.mehmetbalbay.bitcointicker.extension.gone
 import com.mehmetbalbay.bitcointicker.extension.visible
 import com.mehmetbalbay.bitcointicker.extension.vm
 import com.mehmetbalbay.bitcointicker.factory.AppViewModelFactory
@@ -34,6 +33,8 @@ import com.mehmetbalbay.bitcointicker.view.ui.auth.AuthViewModel
 import com.mehmetbalbay.bitcointicker.view.ui.base.BaseBottomSheetFragment
 import com.mehmetbalbay.bitcointicker.view.ui.mycoins.MyCoinsListener
 import dagger.android.support.AndroidSupportInjection
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
@@ -133,29 +134,32 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
         viewModel.coinDetailLiveData.observe(viewLifecycleOwner, { resource ->
             when (resource.status) {
                 Status.LOADING -> {
-                    binding.detailProgress.visible()
-                    binding.detailContainer.gone()
+                    //binding.detailProgress.visible()
+                    //binding.detailContainer.gone()
                 }
                 Status.SUCCESS -> {
                     resource?.let {
                         setDetails(it.data)
+
                         coinDetailItem = it.data
+
                         it.data?.image?.small?.run {
                             toolbarCenterLogo(this)
                         }
+
                         it.data?.isFavorite?.run {
 
                         }
                     }
-                    binding.detailProgress.gone()
-                    binding.detailContainer.visible()
+                    //binding.detailProgress.gone()
+                    //binding.detailContainer.visible()
 
                     val msg = Message.obtain()
                     msg.what = WHAT_MSG
                     mHandler.sendMessageDelayed(msg, refreshIntervalTime)
                 }
                 Status.ERROR -> {
-                    binding.detailProgress.gone()
+                    //binding.detailProgress.gone()
                 }
             }
         })
@@ -173,6 +177,7 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
             setCurrentPrice(it.marketData?.currentPrice)
             setPriceChangePercentage24hIn(it.marketData?.priceChange24hInCurrency)
             setHashAlgorithm(it.hashingAlgorithm)
+            setRefreshView()
         }
     }
 
@@ -293,6 +298,19 @@ class CoinDetailFragment : BaseBottomSheetFragment(), MyCoinsListener {
     override fun onDestroy() {
         super.onDestroy()
         mHandler.removeMessages(WHAT_MSG)
+    }
+
+    private fun setRefreshView() {
+        binding.refreshDateTxt.visible()
+        binding.lastUpdatedLine.visible()
+        binding.refreshDate.text = getCurrentDate()
+    }
+
+    private fun getCurrentDate(): String {
+        val c: Date = Calendar.getInstance().time
+
+        val df = SimpleDateFormat("dd-MMM-yyyy HH:mm:ss", Locale.getDefault())
+        return df.format(c)
     }
 
     override fun onStarted() {

@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -54,7 +54,7 @@
 
             <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
                 android:id="@+id/textViewWithFontBold"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"

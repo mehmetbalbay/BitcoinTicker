@@ -44,4 +44,6 @@
     <string name="welcome">Welcome</string>
     <string name="user_email">Email:</string>
     <string name="confirm_btn">Confirm</string>
+
+    <string name="detail_up_to_date">Last Updated Date</string>
 </resources>

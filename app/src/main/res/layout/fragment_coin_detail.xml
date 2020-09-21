@@ -84,7 +84,7 @@
                 android:layout_marginEnd="16dp"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:visibility="visible">
 
                 <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFontBold
@@ -184,6 +184,32 @@
                     android:layout_marginTop="4dp"
                     android:textColor="@color/white"
                     tools:text="24H percentage change" />
+
+                <View
+                    android:id="@+id/lastUpdatedLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone" />
+
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/refreshDateTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/detail_up_to_date"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <com.mehmetbalbay.bitcointicker.view.ui.customview.TextViewWithFont
+                    android:id="@+id/refreshDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

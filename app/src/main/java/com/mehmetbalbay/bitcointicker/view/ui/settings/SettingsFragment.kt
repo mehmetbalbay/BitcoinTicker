@@ -42,7 +42,7 @@ class SettingsFragment : ViewModelFragment() {
     private fun setUserData() {
         val firebaseUser = authViewModel.user
         firebaseUser?.let {
-            val welcomeText = "Welcome ${it.displayName}"
+            val welcomeText = "Welcome"
             val email = "Email: ${it.email}"
             binding.welcomeText.text = welcomeText
             binding.email.text = email
